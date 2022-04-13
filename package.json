@@ -8,8 +8,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prettier": "prettier --check \"**/*.js\"",
-    "prettier:fix": "prettier --write \"**/*.js\""
+    "prettier": "prettier --check \"**/*.{js, ts, jsx, css}\"",
+    "prettier:fix": "prettier --write \"**/*.{js, ts, jsx, css}\""
   },
   "dependencies": {
     "next": "12.1.5",
