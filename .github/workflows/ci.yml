@@ -30,9 +30,6 @@ jobs:
       - name: Prettier
         run: npm run prettier
 
-      - name: Unit Test
-        run: npm run test
-
   coverage:
     runs-on: ubuntu-latest
     strategy:
@@ -45,9 +42,3 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-
-      - name: Run Jest Coverage Report
-        uses: artiomtr/jest-coverage-report-action@v2.0-rc.4
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          threshold: 60
