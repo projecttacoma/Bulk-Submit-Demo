@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "jest --silent",
+    "test:coverage": "jest --collectCoverage",
+    "test:watch": "jest --watchAll",
+    "test:watch:coverage": "jest --watchAll --collectCoverage"
   },
   "dependencies": {
     "next": "12.1.5",
@@ -19,6 +23,8 @@
     "@types/react-dom": "18.0.0",
     "eslint": "8.13.0",
     "eslint-config-next": "12.1.5",
+    "jest": "^27.5.1",
+    "prettier": "^2.6.2",
     "typescript": "4.6.3"
   }
 }
