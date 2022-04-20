@@ -2,6 +2,7 @@ import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { ColorScheme, ColorSchemeProvider, MantineProvider } from '@mantine/core';
 import { useState } from 'react';
+import { NotificationsProvider } from '@mantine/notifications';
 
 export default function App(props: AppProps) {
   const { Component, pageProps } = props;
@@ -18,7 +19,9 @@ export default function App(props: AppProps) {
       </Head>
       <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
         <MantineProvider withGlobalStyles withNormalizeCSS theme={{ colorScheme }}>
-          <Component {...pageProps} />
+          <NotificationsProvider position="top-center">
+            <Component {...pageProps} />
+          </NotificationsProvider>
         </MantineProvider>
       </ColorSchemeProvider>
     </>

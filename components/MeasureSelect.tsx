@@ -1,5 +1,7 @@
 import { Select, SelectItem } from '@mantine/core';
+import { showNotification } from '@mantine/notifications';
 import { Component, useEffect, useState } from 'react';
+import { AlertCircle } from 'tabler-icons-react';
 
 export default function MeasureSelect() {
   const [measures, setMeasures] = useState<SelectItem[]>([]);
@@ -18,6 +20,16 @@ export default function MeasureSelect() {
             };
           }) ?? [];
         setMeasures(measureItems);
+      })
+      .catch((reason: Error) => {
+        showNotification({
+          title: 'FHIR Server Error',
+          message: `Measure listing failed: ${reason.message}. Check if deqm-test-server is running.`,
+          disallowClose: true,
+          autoClose: false,
+          color: 'red',
+          icon: <AlertCircle />
+        });
       });
   }, []);
 
