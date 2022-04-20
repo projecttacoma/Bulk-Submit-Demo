@@ -5,6 +5,7 @@ import styles from '../styles/Home.module.css';
 import { AppShell, Navbar, Header, Text, Grid, TextInput } from '@mantine/core';
 import AbacusHeader from '../components/AbacusHeader';
 import MeasureSelect from '../components/MeasureSelect';
+import ExportURLInput from '../components/ExportURLInput';
 
 const Home: NextPage = () => {
   return (
@@ -15,10 +16,10 @@ const Home: NextPage = () => {
       <AppShell padding="md" header={<Header height={60}>{<AbacusHeader></AbacusHeader>}</Header>}>
         <Grid>
           <Grid.Col span={6}>
-            <MeasureSelect></MeasureSelect>
+            <MeasureSelect />
           </Grid.Col>
           <Grid.Col span={6}>
-            <TextInput placeholder="Export URL (Data Source)"></TextInput>
+            <ExportURLInput />
           </Grid.Col>
         </Grid>
       </AppShell>
