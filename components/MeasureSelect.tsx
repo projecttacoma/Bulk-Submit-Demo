@@ -1,6 +1,6 @@
 import { Select, SelectItem } from '@mantine/core';
 import { showNotification } from '@mantine/notifications';
-import { Component, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AlertCircle } from 'tabler-icons-react';
 
 export default function MeasureSelect() {
@@ -13,7 +13,7 @@ export default function MeasureSelect() {
       .then((measuresBundle: fhir4.Bundle) => {
         const measureItems: SelectItem[] =
           measuresBundle.entry?.map(entry => {
-            let measure = entry.resource as fhir4.Measure;
+            const measure = entry.resource as fhir4.Measure;
             return {
               value: measure.id ?? '',
               label: measure.name ? `${measure.name} (${measure.id})` : measure.id

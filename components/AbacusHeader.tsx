@@ -1,4 +1,4 @@
-import { ActionIcon, Box, Group, useMantineColorScheme } from '@mantine/core';
+import { ActionIcon, Group, useMantineColorScheme } from '@mantine/core';
 import { MoonStars, Sun } from 'tabler-icons-react';
 
 export default function AbacusHeader() {
