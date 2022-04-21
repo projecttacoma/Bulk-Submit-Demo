@@ -2,7 +2,7 @@ import { TextInput } from '@mantine/core';
 import { useState } from 'react';
 
 export default function ExportURLInput() {
-  const [exportURL, setExportURL] = useState<string | undefined>('');
+  const [exportURL, setExportURL] = useState<string>('');
   return (
     <TextInput
       placeholder="Export URL (Data Source)"
