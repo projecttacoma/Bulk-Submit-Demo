@@ -9,7 +9,7 @@ export function mantineWrap(children: JSX.Element) {
         void 0;
       }}
     >
-      <MantineProvider withGlobalStyles withNormalizeCSS theme="light">
+      <MantineProvider withGlobalStyles withNormalizeCSS theme={{ colorScheme: 'light' }}>
         <NotificationsProvider position="top-center">{children}</NotificationsProvider>
       </MantineProvider>
     </ColorSchemeProvider>
