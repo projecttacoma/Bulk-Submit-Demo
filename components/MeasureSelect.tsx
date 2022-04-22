@@ -1,11 +1,13 @@
 import { Select, SelectItem } from '@mantine/core';
 import { showNotification } from '@mantine/notifications';
 import { useEffect, useState } from 'react';
+import { useRecoilState } from 'recoil';
 import { AlertCircle } from 'tabler-icons-react';
+import { selectedMeasureState } from '../atoms/selectedMeasure';
 
 export default function MeasureSelect() {
   const [measures, setMeasures] = useState<SelectItem[]>([]);
-  const [selectedMeasure, setSelectedMeasure] = useState<string | null>(null);
+  const [selectedMeasure, setSelectedMeasure] = useRecoilState<string | null>(selectedMeasureState);
 
   useEffect(() => {
     fetch(`${process.env.NEXT_PUBLIC_DEQM_SERVER}/Measure`)

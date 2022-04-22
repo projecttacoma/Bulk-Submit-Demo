@@ -1,8 +1,9 @@
 import { TextInput } from '@mantine/core';
-import { useState } from 'react';
+import { exportUrlState } from '../atoms/exportUrl';
+import { useRecoilState } from 'recoil';
 
 export default function ExportURLInput() {
-  const [exportURL, setExportURL] = useState<string>('');
+  const [exportURL, setExportURL] = useRecoilState<string>(exportUrlState);
   return (
     <TextInput
       placeholder="Export URL (Data Source)"
