@@ -5,6 +5,11 @@ import { Loader, ScrollArea, Card, Center, Tabs, Title, Text } from '@mantine/co
 import dynamic from 'next/dynamic';
 const DynamicReactJson = dynamic(import('react-json-view'), { ssr: false });
 
+/**
+ * Pings DEQM-test-server for the $data-requirements results based on the measure
+ * selected. Updates each time a new measure is selected
+ * @returns JSX for Data Requirements panel on screen
+ */
 export default function DataRequirementsViewer() {
   const [selectedMeasure] = useRecoilState(selectedMeasureState);
   const [dataRequirements, setDataRequirements] = useState<fhir4.DataRequirement | null>(null);
@@ -45,7 +50,14 @@ export default function DataRequirementsViewer() {
     </Card>
   );
 }
-
+/**
+ * Helper function that takes in all data that could potentially be displayed in the window and
+ * determines what to show
+ * @param isLoading {Boolean} true if the dataRequirements are still loading
+ * @param dataRequirements {Object} FHIR dataRequirements calculated by FQM-execution
+ * @param error {Object} FHIR OperationOutcome describing an error occurred while calculating dataRequirements
+ * @returns JSX with the appropriate component for the situation
+ */
 function renderJSONResults(
   isLoading: boolean,
   dataRequirements: fhir4.DataRequirement | null,
