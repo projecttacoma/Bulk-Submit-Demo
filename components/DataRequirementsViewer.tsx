@@ -14,7 +14,7 @@ export default function DataRequirementsViewer() {
   const selectedMeasure = useRecoilValue(selectedMeasureState);
   const [dataRequirements, setDataRequirements] = useState<fhir4.DataRequirement | null>(null);
   const [error, setError] = useState<fhir4.OperationOutcome | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   // TODO: Remove this hard-coded date once periodStart and periodEnd input boxes are added
   const dataRequirementsQuery = '?periodStart=2019-01-01&periodEnd=2019-12-31';
