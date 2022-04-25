@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { selectedMeasureState } from '../atoms/selectedMeasure';
 import { Loader, ScrollArea, Card, Center, Tabs, Title, Text } from '@mantine/core';
 import dynamic from 'next/dynamic';
@@ -11,10 +11,12 @@ const DynamicReactJson = dynamic(import('react-json-view'), { ssr: false });
  * @returns JSX for Data Requirements panel on screen
  */
 export default function DataRequirementsViewer() {
-  const [selectedMeasure] = useRecoilState(selectedMeasureState);
+  const selectedMeasure = useRecoilValue(selectedMeasureState);
   const [dataRequirements, setDataRequirements] = useState<fhir4.DataRequirement | null>(null);
   const [error, setError] = useState<fhir4.OperationOutcome | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  // TODO: Remove this hard-coded date once periodStart and periodEnd input boxes are added
   const dataRequirementsQuery = '?periodStart=2019-01-01&periodEnd=2019-12-31';
   useEffect(() => {
     if (selectedMeasure) {

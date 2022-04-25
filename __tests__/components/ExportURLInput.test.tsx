@@ -1,18 +1,12 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { mantineWrap } from '../helpers/testHelpers';
+import { mantineRecoilWrap } from '../helpers/testHelpers';
 import { RecoilRoot } from 'recoil';
 import ExportURLInput from '../../components/ExportURLInput';
 
 describe('ExportURLInput', () => {
   it('renders a text input field', () => {
-    render(
-      mantineWrap(
-        <RecoilRoot>
-          <ExportURLInput />
-        </RecoilRoot>
-      )
-    );
+    render(mantineRecoilWrap(<ExportURLInput />));
 
     const textbox = screen.getByPlaceholderText('Export URL (Data Source)') as HTMLInputElement;
     expect(textbox).toBeInTheDocument();
