@@ -1,7 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { mantineRecoilWrap } from '../helpers/testHelpers';
-import { RecoilRoot } from 'recoil';
 import ExportURLInput from '../../components/ExportURLInput';
 
 describe('ExportURLInput', () => {
