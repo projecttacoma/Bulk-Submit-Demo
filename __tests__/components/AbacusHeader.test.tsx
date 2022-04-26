@@ -1,11 +1,11 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { mantineWrap } from '../helpers/testHelpers';
+import { mantineRecoilWrap } from '../helpers/testHelpers';
 import AbacusHeader from '../../components/AbacusHeader';
 
 describe('AbacusHeader', () => {
   it('renders a heading with title and theme switcher', () => {
-    render(mantineWrap(<AbacusHeader />));
+    render(mantineRecoilWrap(<AbacusHeader />));
 
     const heading = screen.getByRole('heading', {
       name: /Bulk Submit Data Demo/i

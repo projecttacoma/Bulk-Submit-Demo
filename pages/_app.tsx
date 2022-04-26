@@ -1,4 +1,5 @@
 import { AppProps } from 'next/app';
+import { RecoilRoot } from 'recoil';
 import Head from 'next/head';
 import { ColorScheme, ColorSchemeProvider, MantineProvider } from '@mantine/core';
 import { useState } from 'react';
@@ -11,7 +12,7 @@ export default function App(props: AppProps) {
     setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
 
   return (
-    <>
+    <RecoilRoot>
       <Head>
         <title>Bulk Submit Data Demo</title>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
@@ -24,6 +25,6 @@ export default function App(props: AppProps) {
           </NotificationsProvider>
         </MantineProvider>
       </ColorSchemeProvider>
-    </>
+    </RecoilRoot>
   );
 }
