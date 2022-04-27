@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { APIParams, DRQuery } from '../types/DataRequirementsFiltersTypes';
+import { APIParams, DRQuery } from '../../types/DataRequirementsFiltersTypes';
 import { Textarea, Text, Grid, Center } from '@mantine/core';
 
 export function DataRequirementsFilters(props: any) {

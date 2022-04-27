@@ -20,9 +20,4 @@ describe('DataRequirementsPanel', () => {
     const FilterTab = screen.getByRole('tab', { name: 'Filters' }) as HTMLInputElement;
     expect(FilterTab).toBeInTheDocument();
   });
-  it('renders content inside JSON tab', () => {
-    render(mantineRecoilWrap(<DataRequirementsPanel />));
-    const JSONViewer = screen.getByText('No Data') as HTMLInputElement;
-    expect(JSONViewer).toBeInTheDocument();
-  });
 });
