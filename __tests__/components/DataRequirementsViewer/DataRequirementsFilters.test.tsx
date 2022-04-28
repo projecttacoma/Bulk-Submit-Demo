@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { mantineRecoilWrap } from '../helpers/testHelpers';
-import { DataRequirementsFilters } from '../../components/DataRequirementsView/DataRequirementsFilters';
+import { mantineRecoilWrap } from '../../helpers/testHelpers';
+import { DataRequirementsFilters } from '../../../components/DataRequirementsView/DataRequirementsFilters';
 
 describe('DataRequirementsFiltersTab', () => {
   it('renders No Data inside filters tab with no data', () => {

@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import { mantineRecoilWrap } from '../helpers/testHelpers';
-import DataRequirementsJSON from '../../components/DataRequirementsView/DataRequirementsJSON';
+import { mantineRecoilWrap } from '../../helpers/testHelpers';
+import DataRequirementsJSON from '../../../components/DataRequirementsView/DataRequirementsJSON';
 
 import '@testing-library/jest-dom';
 

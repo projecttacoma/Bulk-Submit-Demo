@@ -2,18 +2,23 @@ import { useEffect, useState } from 'react';
 import { APIParams, DRQuery } from '../../types/DataRequirementsFiltersTypes';
 import { Textarea, Text, Grid, Center } from '@mantine/core';
 
-export function DataRequirementsFilters(props: any) {
+/**
+ * Converts data requirements array to type and typeFilters and displays them
+ * @param dataRequirements {Array} the dataRequirements as returned by fqm-execution
+ * @returns tsx for the data requirements filters visualizer
+ */
+export function DataRequirementsFilters({ dataRequirements }: { dataRequirements: fhir4.DataRequirement[] | null }) {
   const [types, setTypes] = useState('');
   const [typeFilters, setTypeFilters] = useState<string | undefined>('');
   useEffect(() => {
-    if (props.dataRequirements) {
-      const { _type, _typeFilter } = generateTypesAndTypeFilters(props.dataRequirements);
+    if (dataRequirements) {
+      const { _type, _typeFilter } = generateTypesAndTypeFilters(dataRequirements);
       setTypes(_type);
       setTypeFilters(_typeFilter);
     }
-  }, [props.dataRequirements]);
+  }, [dataRequirements]);
 
-  if (props.dataRequirements) {
+  if (dataRequirements) {
     return (
       <Grid>
         <Grid.Col>
