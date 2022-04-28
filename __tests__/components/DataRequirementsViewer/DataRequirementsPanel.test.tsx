@@ -1,15 +1,11 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { mantineRecoilWrap } from '../../helpers/testHelpers';
+import { mantineRecoilWrap, mockResizeObserver } from '../../helpers/testHelpers';
 import DataRequirementsPanel from '../../../components/DataRequirementsView/DataRequirementsPanel';
 
 describe('DataRequirementsPanel', () => {
   // Workaround for issues with the built-in use-resize-observer in jest
-  window.ResizeObserver = jest.fn().mockImplementation(() => ({
-    observe: jest.fn(),
-    unobserve: jest.fn(),
-    disconnect: jest.fn()
-  }));
+  window.ResizeObserver = mockResizeObserver;
   it('renders a JSON tab', () => {
     render(mantineRecoilWrap(<DataRequirementsPanel />));
     const JSONTab = screen.getByRole('tab', { name: 'JSON' }) as HTMLInputElement;
