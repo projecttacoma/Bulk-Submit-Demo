@@ -7,7 +7,11 @@ import { Textarea, Text, Grid, Center } from '@mantine/core';
  * @param dataRequirements {Array} the dataRequirements as returned by fqm-execution
  * @returns tsx for the data requirements filters visualizer
  */
-export function DataRequirementsFilters({ dataRequirements }: { dataRequirements: fhir4.DataRequirement[] | null }) {
+export function DataRequirementsFilters({
+  dataRequirements
+}: {
+  dataRequirements: fhir4.DataRequirement[] | undefined;
+}) {
   const [types, setTypes] = useState('');
   const [typeFilters, setTypeFilters] = useState<string | undefined>('');
   useEffect(() => {

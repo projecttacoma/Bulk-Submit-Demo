@@ -5,7 +5,7 @@ import { DataRequirementsFilters } from '../../../components/DataRequirementsVie
 
 describe('DataRequirementsFiltersTab', () => {
   it('renders No Data inside filters tab with no data', () => {
-    render(mantineRecoilWrap(<DataRequirementsFilters dataRequirements={null} />));
+    render(mantineRecoilWrap(<DataRequirementsFilters dataRequirements={undefined} />));
     const JSONViewer = screen.getByText('No Data') as HTMLInputElement;
     expect(JSONViewer).toBeInTheDocument();
   });
