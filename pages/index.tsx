@@ -5,6 +5,7 @@ import AbacusHeader from '../components/AbacusHeader';
 import MeasureSelect from '../components/MeasureSelect';
 import ExportURLInput from '../components/ExportURLInput';
 import DataRequirementsPanel from '../components/DataRequirementsView/DataRequirementsPanel';
+import ResetInputButton from '../components/ResetInputButton';
 
 const Home: NextPage = () => {
   return (
@@ -21,6 +22,7 @@ const Home: NextPage = () => {
             <ExportURLInput />
           </Grid.Col>
           <Grid.Col span={6}>
+            <ResetInputButton />
             <DataRequirementsPanel />
           </Grid.Col>
         </Grid>
