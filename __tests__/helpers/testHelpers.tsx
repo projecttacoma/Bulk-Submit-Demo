@@ -18,3 +18,9 @@ export function mantineRecoilWrap(children: JSX.Element) {
     </ColorSchemeProvider>
   );
 }
+
+export const mockResizeObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn()
+}));

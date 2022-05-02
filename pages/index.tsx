@@ -4,7 +4,7 @@ import { AppShell, Header, Grid } from '@mantine/core';
 import AbacusHeader from '../components/AbacusHeader';
 import MeasureSelect from '../components/MeasureSelect';
 import ExportURLInput from '../components/ExportURLInput';
-import DataRequirementsViewer from '../components/DataRequirementsViewer';
+import DataRequirementsPanel from '../components/DataRequirementsView/DataRequirementsPanel';
 
 const Home: NextPage = () => {
   return (
@@ -21,7 +21,7 @@ const Home: NextPage = () => {
             <ExportURLInput />
           </Grid.Col>
           <Grid.Col span={6}>
-            <DataRequirementsViewer />
+            <DataRequirementsPanel />
           </Grid.Col>
         </Grid>
       </AppShell>
