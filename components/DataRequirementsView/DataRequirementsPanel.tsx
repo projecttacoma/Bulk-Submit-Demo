@@ -15,6 +15,7 @@ export default function DataRequirementsPanel() {
   const [dataRequirements, setDataRequirements] = useState<fhir4.Library | null>(null);
   const [error, setError] = useState<fhir4.OperationOutcome | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [activeTab, setActiveTab] = useState(0);
 
   // TODO: Remove this hard-coded date once periodStart and periodEnd input boxes are added
   const dataRequirementsQuery = '?periodStart=2019-01-01&periodEnd=2019-12-31';
@@ -39,14 +40,16 @@ export default function DataRequirementsPanel() {
   return (
     <Card shadow="xl" style={{ height: 400 }}>
       <Title order={4}>Data Requirements</Title>
-      <Tabs grow>
-        <Tabs.Tab label="JSON">
-          <DataRequirementsJSON dataRequirements={dataRequirements} error={error} isLoading={isLoading} />
-        </Tabs.Tab>
-        <Tabs.Tab label="Filters">
-          <DataRequirementsFilters dataRequirements={dataRequirements?.dataRequirement} />
-        </Tabs.Tab>
+      <Tabs grow active={activeTab} onTabChange={setActiveTab}>
+        <Tabs.Tab label="JSON"></Tabs.Tab>
+        <Tabs.Tab label="Filters"></Tabs.Tab>
       </Tabs>
+      <div style={{ display: activeTab === 0 ? 'block' : 'none' }}>
+        <DataRequirementsJSON dataRequirements={dataRequirements} error={error} isLoading={isLoading} />
+      </div>
+      <div style={{ display: activeTab === 1 ? 'block' : 'none' }}>
+        <DataRequirementsFilters dataRequirements={dataRequirements?.dataRequirement} />
+      </div>
     </Card>
   );
 }
