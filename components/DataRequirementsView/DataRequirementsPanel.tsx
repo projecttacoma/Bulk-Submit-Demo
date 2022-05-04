@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { selectedMeasureState } from '../../atoms/selectedMeasure';
-import { Loader, ScrollArea, Card, Center, Tabs, Title, Text } from '@mantine/core';
+import { Card, Tabs, Title } from '@mantine/core';
 import { DataRequirementsFilters } from './DataRequirementsFilters';
 import DataRequirementsJSON from './DataRequirementsJSON';
 
@@ -19,6 +19,14 @@ export default function DataRequirementsPanel() {
 
   // TODO: Remove this hard-coded date once periodStart and periodEnd input boxes are added
   const dataRequirementsQuery = '?periodStart=2019-01-01&periodEnd=2019-12-31';
+
+  function resetDataRequirements() {
+    setDataRequirements(null);
+    setError(null);
+    setIsLoading(false);
+    setActiveTab(0);
+  }
+
   useEffect(() => {
     if (selectedMeasure) {
       setIsLoading(true);
@@ -34,6 +42,9 @@ export default function DataRequirementsPanel() {
           setError(e);
           setIsLoading(false);
         });
+    } else {
+      // selectedMeasure was reset with 'Reset Inputs' button
+      resetDataRequirements();
     }
   }, [selectedMeasure]);
 
