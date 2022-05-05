@@ -18,11 +18,4 @@ describe('KickoffRequestPanel', () => {
     const HeadersTab = screen.getByRole('tab', { name: 'Headers' });
     expect(HeadersTab).toBeInTheDocument();
   });
-
-  it('renders a POST button and Input field that is disabled and filled', () => {
-    render(mantineRecoilWrap(<KickoffRequestPanel />));
-
-    const POSTButton = screen.getByRole('button', { name: 'POST' }) as HTMLButtonElement;
-    expect(POSTButton).toBeInTheDocument();
-  });
 });
