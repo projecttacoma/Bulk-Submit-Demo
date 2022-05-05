@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { selectedMeasureState } from '../../atoms/selectedMeasure';
 import { Card, Tabs, Title, Space } from '@mantine/core';
@@ -9,6 +10,7 @@ import KickoffPostUrl from './KickoffPostUrl';
 export default function KickoffRequestPanel() {
   const selectedMeasure = useRecoilValue(selectedMeasureState);
   const exportUrl = useRecoilValue(exportUrlState);
+  const [activeTab, setActiveTab] = useState(0);
   let body: fhir4.Parameters | undefined;
   let headers: string | undefined;
 
@@ -21,14 +23,18 @@ export default function KickoffRequestPanel() {
       <Title order={4}>Request Preview</Title>
       <Space h="sm" />
       <KickoffPostUrl></KickoffPostUrl>
-      <Tabs grow style={{ height: 340 }}>
-        <Tabs.Tab label="Body">
-          <KickoffBody body={body} />
-        </Tabs.Tab>
-        <Tabs.Tab label="Headers">
-          <KickoffHeaders headers={headers} />
-        </Tabs.Tab>
+      <Tabs grow active={activeTab} onTabChange={setActiveTab}>
+        <Tabs.Tab label="Body"></Tabs.Tab>
+        <Tabs.Tab label="Headers"></Tabs.Tab>
       </Tabs>
+      <div style={{ height: 290 }}>
+        <div style={{ display: activeTab === 0 ? 'block' : 'none' }}>
+          <KickoffBody body={body} />
+        </div>
+        <div style={{ display: activeTab === 1 ? 'block' : 'none' }}>
+          <KickoffHeaders headers={headers} />
+        </div>
+      </div>
     </Card>
   );
 }

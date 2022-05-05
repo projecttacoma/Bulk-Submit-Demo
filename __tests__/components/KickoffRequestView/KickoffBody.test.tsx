@@ -1,4 +1,4 @@
-import { render, screen, act } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { mantineRecoilWrap, mockResizeObserver } from '../../helpers/testHelpers';
 import KickoffBody from '../../../components/KickoffRequestView/KickoffBody';
