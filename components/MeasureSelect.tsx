@@ -42,7 +42,7 @@ export default function MeasureSelect() {
     <Select
       placeholder="Measure ID"
       data={measures}
-      value={selectedMeasure?.id}
+      value={selectedMeasure ? selectedMeasure.id : ''}
       onChange={measureId => {
         const measure = measures.find(m => m.value === measureId) as SelectItem;
         setSelectedMeasure({ id: measure.value, url: measure.url });
