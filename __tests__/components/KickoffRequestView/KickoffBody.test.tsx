@@ -14,7 +14,7 @@ describe('KickoffBody', () => {
   });
 
   it('render JSON viewer when a body is provided', async () => {
-    const { container } = render(mantineRecoilWrap(<KickoffBody body={{ test: 'body', params: [1, 2, 3] }} />));
+    const { container } = render(mantineRecoilWrap(<KickoffBody body={{ resourceType: 'Parameters' }} />));
     const jsonView = container.querySelector('pre.prism-code');
     expect(jsonView).toBeInTheDocument();
   });
