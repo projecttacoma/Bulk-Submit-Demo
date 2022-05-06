@@ -3,7 +3,7 @@ import { showNotification } from '@mantine/notifications';
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { AlertCircle } from 'tabler-icons-react';
-import { selectedMeasureState } from '../atoms/selectedMeasure';
+import { selectedMeasureState } from '../state/atoms/selectedMeasure';
 
 export default function MeasureSelect() {
   const [measures, setMeasures] = useState<SelectItem[]>([]);

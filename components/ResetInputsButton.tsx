@@ -1,6 +1,6 @@
 import { useResetRecoilState } from 'recoil';
-import { selectedMeasureState } from '../atoms/selectedMeasure';
-import { exportUrlState } from '../atoms/exportUrl';
+import { selectedMeasureState } from '../state/atoms/selectedMeasure';
+import { exportUrlState } from '../state/atoms/exportUrl';
 import { Button } from '@mantine/core';
 
 export default function ResetInputsButton() {

@@ -12,7 +12,7 @@ describe('KickoffPostUrl', () => {
 
     const urlInput = screen.getByRole('textbox') as HTMLInputElement;
     expect(urlInput).toBeInTheDocument();
-    expect(urlInput).toBeDisabled();
+    expect(urlInput).toHaveAttribute('readOnly');
     expect(urlInput).toHaveValue('http://example.com/fhir-base-url/Measure/$submit-data');
   });
 });

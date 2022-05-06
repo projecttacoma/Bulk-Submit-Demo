@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
-import { selectedMeasureState } from '../../atoms/selectedMeasure';
+import { selectedMeasureState } from '../../state/atoms/selectedMeasure';
 import { Card, Tabs, Title } from '@mantine/core';
 import { DataRequirementsFilters } from './DataRequirementsFilters';
 import DataRequirementsJSON from './DataRequirementsJSON';

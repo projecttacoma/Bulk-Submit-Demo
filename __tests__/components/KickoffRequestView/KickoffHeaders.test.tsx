@@ -14,7 +14,7 @@ describe('KickoffHeaders', () => {
   });
 
   it('render header info when there is header data to show', () => {
-    render(mantineRecoilWrap(<KickoffHeaders headers="Content-Type: application/json+fhir" />));
+    render(mantineRecoilWrap(<KickoffHeaders headers={{ 'Content-Type': 'application/json+fhir' }} />));
     const headers = screen.getByText('Content-Type: application/json+fhir');
     expect(headers).toBeInTheDocument();
   });
