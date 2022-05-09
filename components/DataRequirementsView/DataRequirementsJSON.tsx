@@ -33,9 +33,17 @@ function renderJSONResults(
       </Center>
     );
   } else if (error) {
-    return <Prism language="json">{JSON.stringify(error, undefined, 2)}</Prism>;
+    return (
+      <Prism data-testid="prism-error-content" language="json">
+        {JSON.stringify(error, undefined, 2)}
+      </Prism>
+    );
   } else if (dataRequirements) {
-    return <Prism language="json">{JSON.stringify(dataRequirements, undefined, 2)}</Prism>;
+    return (
+      <Prism data-testid="prism-dr-content" language="json">
+        {JSON.stringify(dataRequirements, undefined, 2)}
+      </Prism>
+    );
   } else {
     return (
       <Center>

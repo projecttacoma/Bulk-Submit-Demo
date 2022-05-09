@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ColorSchemeProvider, MantineProvider } from '@mantine/core';
 import { NotificationsProvider } from '@mantine/notifications';
-import { RecoilRoot } from 'recoil';
+import { useEffect } from 'react';
+import { RecoilRoot, RecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 
 export function mantineRecoilWrap(children: JSX.Element) {
   return (
@@ -24,3 +26,49 @@ export const mockResizeObserver = jest.fn().mockImplementation(() => ({
   unobserve: jest.fn(),
   disconnect: jest.fn()
 }));
+
+/*
+ * Generate a mock implementation for `fetch` with any desired 200 OK response
+ * Use any type to avoid writing out every property of `fetch` responses
+ */
+export function getMockFetchImplementation(desiredResponse: any) {
+  return jest.fn(
+    () =>
+      Promise.resolve({
+        json: jest.fn().mockResolvedValue(desiredResponse)
+      }) as any
+  );
+}
+
+/*
+ * Generate a mock implementation that rejects a `fetch` call with a specific error
+ */
+export function getMockFetchImplementationError(errorMessage: string) {
+  return jest.fn(() => Promise.reject(new Error(errorMessage)));
+}
+
+/*
+ * Generate a functional component that can hardcode the value of a recoil atom
+ */
+export function getMockRecoilState<T>(atom: RecoilState<T>, value: T) {
+  return () => {
+    const setMockState = useSetRecoilState(atom);
+    useEffect(() => {
+      setMockState(value);
+    }, [setMockState]);
+    return null;
+  };
+}
+
+/*
+ * Generate a functional component that can observe changes to a recoil atom
+ */
+export function getRecoilObserver<T>(atom: RecoilState<T>, onChange: (value: T) => void) {
+  return () => {
+    const value = useRecoilValue(atom);
+    useEffect(() => {
+      onChange(value);
+    }, [value]);
+    return null;
+  };
+}
