@@ -1,6 +1,10 @@
 import { Code, Center, Text } from '@mantine/core';
 
-export default function KickoffHeaders({ headers }: { headers: { [key: string]: string } | undefined }) {
+interface KickoffHeadersProps {
+  headers?: { [key: string]: string };
+}
+
+export default function KickoffHeaders({ headers }: KickoffHeadersProps) {
   let headersText: string | undefined;
   if (headers) {
     headersText = '';
