@@ -3,11 +3,13 @@ import { showNotification } from '@mantine/notifications';
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { AlertCircle } from 'tabler-icons-react';
-import { selectedMeasureState } from '../atoms/selectedMeasure';
+import { selectedMeasureState } from '../state/atoms/selectedMeasure';
 
 export default function MeasureSelect() {
   const [measures, setMeasures] = useState<SelectItem[]>([]);
-  const [selectedMeasure, setSelectedMeasure] = useRecoilState<string | null>(selectedMeasureState);
+  const [selectedMeasure, setSelectedMeasure] = useRecoilState<{ id: string; url?: string } | null>(
+    selectedMeasureState
+  );
 
   useEffect(() => {
     fetch(`${process.env.NEXT_PUBLIC_DEQM_SERVER}/Measure`)
@@ -18,7 +20,8 @@ export default function MeasureSelect() {
             const measure = entry.resource as fhir4.Measure;
             return {
               value: measure.id ?? '',
-              label: measure.name ? `${measure.name} (${measure.id})` : measure.id
+              label: measure.name ? `${measure.name} (${measure.id})` : measure.id,
+              url: measure.url
             };
           }) ?? [];
         setMeasures(measureItems);
@@ -35,5 +38,15 @@ export default function MeasureSelect() {
       });
   }, []);
 
-  return <Select placeholder="Measure ID" data={measures} value={selectedMeasure} onChange={setSelectedMeasure} />;
+  return (
+    <Select
+      placeholder="Measure ID"
+      data={measures}
+      value={selectedMeasure ? selectedMeasure.id : ''}
+      onChange={measureId => {
+        const measure = measures.find(m => m.value === measureId) as SelectItem;
+        setSelectedMeasure({ id: measure.value, url: measure.url });
+      }}
+    />
+  );
 }

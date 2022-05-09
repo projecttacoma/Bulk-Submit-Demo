@@ -1,5 +1,5 @@
 import { TextInput } from '@mantine/core';
-import { exportUrlState } from '../atoms/exportUrl';
+import { exportUrlState } from '../state/atoms/exportUrl';
 import { useRecoilState } from 'recoil';
 
 export default function ExportURLInput() {

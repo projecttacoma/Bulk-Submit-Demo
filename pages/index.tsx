@@ -6,6 +6,7 @@ import MeasureSelect from '../components/MeasureSelect';
 import ExportURLInput from '../components/ExportURLInput';
 import DataRequirementsPanel from '../components/DataRequirementsView/DataRequirementsPanel';
 import ResetInputsButton from '../components/ResetInputsButton';
+import KickoffRequestPanel from '../components/KickoffRequestView/KickoffRequestPanel';
 
 const Home: NextPage = () => {
   return (
@@ -25,6 +26,9 @@ const Home: NextPage = () => {
             <Center>
               <ResetInputsButton />
             </Center>
+          </Grid.Col>
+          <Grid.Col span={6}>
+            <KickoffRequestPanel />
           </Grid.Col>
           <Grid.Col span={6}>
             <DataRequirementsPanel />

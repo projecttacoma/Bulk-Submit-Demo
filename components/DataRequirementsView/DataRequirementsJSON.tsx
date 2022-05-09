@@ -1,7 +1,5 @@
 import { Loader, ScrollArea, Center, Text } from '@mantine/core';
-import dynamic from 'next/dynamic';
-
-const DynamicReactJson = dynamic(import('react-json-view'), { ssr: false });
+import { Prism } from '@mantine/prism';
 
 export default function DataRequirementsJSON({
   isLoading,
@@ -35,9 +33,9 @@ function renderJSONResults(
       </Center>
     );
   } else if (error) {
-    return <DynamicReactJson src={error} indentWidth={2} />;
+    return <Prism language="json">{JSON.stringify(error, undefined, 2)}</Prism>;
   } else if (dataRequirements) {
-    return <DynamicReactJson src={dataRequirements} indentWidth={2} />;
+    return <Prism language="json">{JSON.stringify(dataRequirements, undefined, 2)}</Prism>;
   } else {
     return (
       <Center>

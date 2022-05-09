@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
-import { selectedMeasureState } from '../../atoms/selectedMeasure';
+import { selectedMeasureState } from '../../state/atoms/selectedMeasure';
 import { Card, Tabs, Title } from '@mantine/core';
 import { DataRequirementsFilters } from './DataRequirementsFilters';
 import DataRequirementsJSON from './DataRequirementsJSON';
@@ -30,7 +30,7 @@ export default function DataRequirementsPanel() {
   useEffect(() => {
     if (selectedMeasure) {
       setIsLoading(true);
-      const dataReqUrl = `${process.env.NEXT_PUBLIC_DEQM_SERVER}/Measure/${selectedMeasure}/$data-requirements${dataRequirementsQuery}`;
+      const dataReqUrl = `${process.env.NEXT_PUBLIC_DEQM_SERVER}/Measure/${selectedMeasure.id}/$data-requirements${dataRequirementsQuery}`;
       fetch(dataReqUrl)
         .then(res => res.json())
         .then(dr => {
