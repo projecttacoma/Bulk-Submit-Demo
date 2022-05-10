@@ -9,7 +9,7 @@ describe('KickoffBody', () => {
 
   it('renders with "No Data" message when there is no body preview to show', async () => {
     render(mantineRecoilWrap(<KickoffBody body={undefined} />));
-    const noDataText = await screen.getByText('No Data');
+    const noDataText = screen.getByText('No Data');
     expect(noDataText).toBeInTheDocument();
   });
 
