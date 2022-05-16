@@ -1,4 +1,4 @@
-import { Select, SelectItem } from '@mantine/core';
+import { Loader, Select, SelectItem } from '@mantine/core';
 import { showNotification } from '@mantine/notifications';
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
@@ -10,6 +10,7 @@ export default function MeasureSelect() {
   const [selectedMeasure, setSelectedMeasure] = useRecoilState<{ id: string; url?: string } | null>(
     selectedMeasureState
   );
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     fetch(`${process.env.NEXT_PUBLIC_DEQM_SERVER}/Measure`)
@@ -25,8 +26,10 @@ export default function MeasureSelect() {
             };
           }) ?? [];
         setMeasures(measureItems);
+        setIsLoading(false);
       })
       .catch((reason: Error) => {
+        setIsLoading(false);
         showNotification({
           title: 'FHIR Server Error',
           message: `Measure listing failed: ${reason.message}. Check if deqm-test-server is running.`,
@@ -47,6 +50,7 @@ export default function MeasureSelect() {
         const measure = measures.find(m => m.value === measureId) as SelectItem;
         setSelectedMeasure({ id: measure.value, url: measure.url });
       }}
+      rightSection={isLoading ? <Loader size={'sm'} /> : null}
     />
   );
 }

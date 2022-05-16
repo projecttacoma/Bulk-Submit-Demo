@@ -4,6 +4,7 @@ import '@testing-library/jest-dom';
 import {
   getMockFetchImplementation,
   getMockFetchImplementationError,
+  getMockSlowFetchImplementation,
   mantineRecoilWrap,
   mockResizeObserver
 } from '../helpers/testHelpers';
@@ -122,6 +123,43 @@ describe('MeasureSelect', () => {
     });
   });
 
+  describe('slow response test', () => {
+    beforeAll(() => {
+      global.fetch = getMockSlowFetchImplementation(bundleWithMeasure, 500);
+    });
+
+    it('should should render a loading spinner while waiting for response', async () => {
+      await act(async () => {
+        render(mantineRecoilWrap(<MeasureSelect />));
+      });
+
+      // loading spinner with role 'presentation' should exist at first
+      const select = screen.getByPlaceholderText('Measure ID') as HTMLInputElement;
+      const loading = screen.queryByRole('presentation');
+      expect(loading).toBeInTheDocument();
+
+      // wait for response to complete
+      await act(async () => {
+        await new Promise(resolve => setTimeout(resolve, 750));
+      });
+
+      await act(async () => {
+        fireEvent.click(select);
+      });
+
+      // spinner should no longer exist
+      const loading2 = screen.queryByRole('presentation');
+      expect(loading2).not.toBeInTheDocument();
+
+      const options = screen.getAllByRole('option') as HTMLOptionElement[];
+
+      expect(options).toBeDefined();
+      expect(options).toHaveLength(2);
+      expect(options[0]).toBeInTheDocument();
+      expect((options[0].attributes as any).url.value).toEqual(exampleMeasureWithName.url);
+    });
+  });
+
   describe('error response tests', () => {
     beforeAll(() => {
       global.fetch = getMockFetchImplementationError('example error');
@@ -137,6 +175,10 @@ describe('MeasureSelect', () => {
 
       const errorMessage = within(errorNotif).getByText(/example error/);
       expect(errorMessage).toBeInTheDocument();
+
+      // spinner should no longer exist
+      const loading = screen.queryByRole('presentation');
+      expect(loading).not.toBeInTheDocument();
     });
   });
 });
