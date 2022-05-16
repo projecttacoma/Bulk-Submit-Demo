@@ -38,6 +38,12 @@ const bundleWithMeasure: fhir4.Bundle = {
   ]
 };
 
+const bundleWithNoMeasures: fhir4.Bundle = {
+  resourceType: 'Bundle',
+  type: 'searchset',
+  entry: []
+};
+
 describe('MeasureSelect', () => {
   // Workaround for issues with the built-in use-resize-observer in jest
   window.ResizeObserver = mockResizeObserver;
@@ -177,6 +183,26 @@ describe('MeasureSelect', () => {
       expect(errorMessage).toBeInTheDocument();
 
       // spinner should no longer exist
+      const loading = screen.queryByRole('presentation');
+      expect(loading).not.toBeInTheDocument();
+    });
+  });
+
+  describe('empty measure list tests', () => {
+    beforeAll(() => {
+      global.fetch = getMockFetchImplementation(bundleWithNoMeasures);
+    });
+
+    it('should show error notification for bad response', async () => {
+      await act(async () => {
+        render(mantineRecoilWrap(<MeasureSelect />));
+      });
+
+      const select = screen.getByPlaceholderText('No Measures Found') as HTMLInputElement;
+      expect(select).toBeInTheDocument();
+      expect(select).toBeInvalid();
+
+      // spinner should not exist
       const loading = screen.queryByRole('presentation');
       expect(loading).not.toBeInTheDocument();
     });

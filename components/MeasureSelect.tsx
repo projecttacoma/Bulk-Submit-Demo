@@ -11,6 +11,7 @@ export default function MeasureSelect() {
     selectedMeasureState
   );
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [hasNoMeasures, setHasNoMeasures] = useState<boolean>(false);
 
   useEffect(() => {
     fetch(`${process.env.NEXT_PUBLIC_DEQM_SERVER}/Measure`)
@@ -25,7 +26,11 @@ export default function MeasureSelect() {
               url: measure.url
             };
           }) ?? [];
-        setMeasures(measureItems);
+        if (measureItems.length === 0) {
+          setHasNoMeasures(true);
+        } else {
+          setMeasures(measureItems);
+        }
         setIsLoading(false);
       })
       .catch((reason: Error) => {
@@ -43,7 +48,8 @@ export default function MeasureSelect() {
 
   return (
     <Select
-      placeholder="Measure ID"
+      placeholder={hasNoMeasures ? 'No Measures Found' : 'Measure ID'}
+      error={hasNoMeasures ? <></> : undefined}
       data={measures}
       value={selectedMeasure ? selectedMeasure.id : ''}
       onChange={measureId => {
