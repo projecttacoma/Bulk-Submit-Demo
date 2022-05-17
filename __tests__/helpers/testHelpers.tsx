@@ -41,6 +41,24 @@ export function getMockFetchImplementation(desiredResponse: any) {
 }
 
 /*
+ * Generate a mock implementation for `fetch` with any desired 200 OK response
+ * Adds a delay before resolving the request
+ * Use any type to avoid writing out every property of `fetch` responses
+ */
+export function getMockSlowFetchImplementation(desiredResponse: any, delay: number) {
+  return jest.fn(
+    () =>
+      new Promise(resolve => {
+        setTimeout(() => {
+          resolve({
+            json: jest.fn().mockResolvedValue(desiredResponse)
+          });
+        }, delay);
+      }) as any
+  );
+}
+
+/*
  * Generate a mock implementation that rejects a `fetch` call with a specific error
  */
 export function getMockFetchImplementationError(errorMessage: string) {
