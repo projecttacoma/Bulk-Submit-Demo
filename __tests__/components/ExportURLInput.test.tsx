@@ -2,6 +2,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { mantineRecoilWrap } from '../helpers/testHelpers';
 import ExportURLInput from '../../components/ExportURLInput';
+// import KickoffBody from '../../components/KickoffRequestView/KickoffBody'
 
 describe('ExportURLInput', () => {
   it('renders a text input field', () => {
@@ -12,5 +13,16 @@ describe('ExportURLInput', () => {
 
     fireEvent.change(textbox, { target: { value: 'http://localhost:3001/' } });
     expect(textbox.value).toBe('http://localhost:3001/');
+  });
+
+  it('renders an error for an invalid URL', () => {
+    render(mantineRecoilWrap(<ExportURLInput />));
+
+    const textbox = screen.getByPlaceholderText('Export URL (Data Source)') as HTMLInputElement;
+    expect(textbox).toBeInTheDocument();
+
+    fireEvent.change(textbox, { target: { value: 'invalid' } });
+    expect(textbox.value).toBe('invalid');
+    expect(textbox).toBeInvalid();
   });
 });
