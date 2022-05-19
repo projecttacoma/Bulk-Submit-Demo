@@ -12,6 +12,7 @@ describe('ExportURLInput', () => {
 
     fireEvent.change(textbox, { target: { value: 'http://localhost:3001/' } });
     expect(textbox.value).toBe('http://localhost:3001/');
+    expect(textbox).toBeValid();
   });
 
   it('renders an error for an invalid URL', () => {

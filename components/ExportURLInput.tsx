@@ -23,7 +23,9 @@ export default function ExportURLInput() {
     } catch (_) {
       return false;  
     }
-    return url.protocol === "http:" || url.protocol === "https:";
+    // additional regex check for url non-allowed characters
+    const regex = new RegExp(/[^-\]_.~!*'();:@&=+$,\/?%#[A-z0-9]/);
+    return (url.protocol === "http:" || url.protocol === "https:") && !urlStr.match(regex);
   }
 
 

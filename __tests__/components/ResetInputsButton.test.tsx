@@ -59,5 +59,6 @@ describe('ResetInputButtons', () => {
 
     // expect exportUrl textbox and measure select to be empty
     expect(textbox.value).toBe('');
+    expect(textbox).toBeValid();
   });
 });
