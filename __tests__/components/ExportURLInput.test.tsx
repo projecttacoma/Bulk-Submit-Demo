@@ -2,7 +2,6 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { mantineRecoilWrap } from '../helpers/testHelpers';
 import ExportURLInput from '../../components/ExportURLInput';
-// import KickoffBody from '../../components/KickoffRequestView/KickoffBody'
 
 describe('ExportURLInput', () => {
   it('renders a text input field', () => {
