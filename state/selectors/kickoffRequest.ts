@@ -15,8 +15,8 @@ export const kickoffRequestState = selector<KickoffRequestData | null>({
     const selectedMeasure = get(selectedMeasureState);
     const exportUrl = get(exportUrlState);
 
-    if (selectedMeasure && exportUrl) {
-      return buildKickoffRequest(selectedMeasure, exportUrl);
+    if (selectedMeasure && exportUrl.url && exportUrl.valid) {
+      return buildKickoffRequest(selectedMeasure, exportUrl.url);
     } else {
       return null;
     }
