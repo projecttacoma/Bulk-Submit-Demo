@@ -2,7 +2,7 @@
 
 ## Getting Started
 
-Copy `.env.example` to `.env.local` and update `NEXT_PUBLIC_DEQM_SERVER` to reference the base FHIR url of your `deqm-test-server` instance. If running locally, this likely will be `http://localhost:3000/4_0_1`.
+Copy `.env.example` to `.env.local` and update `NEXT_PUBLIC_DEQM_SERVER` to reference the base FHIR url of your [deqm-test-server](https://github.com/projecttacoma/deqm-test-server) instance. If running locally, this likely will be `http://localhost:3000/4_0_1`.
 
 Install dependencies as usual:
 
